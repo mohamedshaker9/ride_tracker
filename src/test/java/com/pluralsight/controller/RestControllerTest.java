@@ -22,8 +22,8 @@ public class RestControllerTest {
 
 		Ride ride = new Ride();
 		
-		ride.setName("kahled Shaker");
-		ride.setDuration(5);
+		ride.setName("zag");
+		ride.setDuration(43);
 		restTemplate.put("http://localhost:8080/ride_tracker/ride", ride);
 	}
 	
