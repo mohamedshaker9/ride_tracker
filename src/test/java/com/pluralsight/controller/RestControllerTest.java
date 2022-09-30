@@ -22,9 +22,9 @@ public class RestControllerTest {
 
 		Ride ride = new Ride();
 		
-		ride.setName("kahled Shaker");
-		ride.setDuration(5);
-		restTemplate.put("http://localhost:8080/ride_tracker/ride", ride);
+		ride.setName("Luxor");
+		ride.setDuration(50);
+		restTemplate.postForObject("http://localhost:8080/ride_tracker/ride", ride, Ride.class);
 	}
 	
 	@Test(timeout=3000)
@@ -52,4 +52,18 @@ public class RestControllerTest {
 		System.out.println("Ride name: " + ride.getName());
 	
 	}
+	
+	@Test(timeout=3000)
+	public void testUpdateRide() {
+		RestTemplate restTemplate = new RestTemplate();
+		
+		Ride ride = restTemplate.getForObject("http://localhost:8080/ride_tracker/ride/1", Ride.class);
+		System.out.println(" Before: Ride name: " + ride.getName());
+		ride.setName("Abu hammad");
+		restTemplate.put("http://localhost:8080/ride_tracker/ride", ride, Ride.class);
+		
+		Ride ride2 = restTemplate.getForObject("http://localhost:8080/ride_tracker/ride/1", Ride.class);
+		System.out.println(" After: Ride name: " + ride.getName());
+	}
+	
 }
