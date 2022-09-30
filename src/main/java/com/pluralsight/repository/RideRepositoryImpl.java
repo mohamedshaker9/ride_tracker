@@ -1,15 +1,14 @@
 package com.pluralsight.repository;
 
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.pluralsight.model.Ride;
+import com.pluralsight.util.RideRowMapper;
 
 @Repository("rideRepository")
 public class RideRepositoryImpl implements RideRepository {
@@ -21,6 +20,12 @@ public class RideRepositoryImpl implements RideRepository {
 	public Ride createRide(Ride ride) {
 		jdbcTemplate.update("INSERT INTO ride (name, duration) values (?, ?)", ride.getName(), ride.getDuration());
 		return null;
+	}
+	
+	@Override
+	public Ride getRide(int id) {
+		Ride ride = (Ride) jdbcTemplate.queryForObject("SELECT * FROM ride WHERE id = ?", new RideRowMapper(), id);
+		return ride;
 	}
 	
 	@Override
