@@ -15,4 +15,6 @@ public interface RideRepository {
 
 	Ride updateRide(Ride ride);
 
+	void deleteRide(Integer id);
+
 }

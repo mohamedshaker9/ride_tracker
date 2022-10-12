@@ -29,7 +29,7 @@ public class RideController {
 		return rideService.getRides();
 	}
 	
-	@RequestMapping(value = "ride/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/ride/{id}", method = RequestMethod.GET)
 	public @ResponseBody Ride getRide(@PathVariable(value="id") Integer id) {
 		return rideService.getRide(id);
 	}
@@ -37,5 +37,12 @@ public class RideController {
 	@RequestMapping(value = "/ride", method = RequestMethod.PUT)
 	public @ResponseBody Ride updatRide(@RequestBody Ride ride) {
 		return rideService.updateRide(ride);
+	}
+	
+	
+	@RequestMapping(value = "/ride/delete/{id}", method = RequestMethod.DELETE)
+	public @ResponseBody Object deleteRide(@PathVariable(value="id") Integer id) {
+		 rideService.deleteRide(id);
+		 return null;
 	}
 }

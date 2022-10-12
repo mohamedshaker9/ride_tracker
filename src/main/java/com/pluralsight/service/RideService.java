@@ -14,4 +14,6 @@ public interface RideService {
 
 	Ride updateRide(Ride ride);
 
+	void deleteRide(Integer id);
+
 }
