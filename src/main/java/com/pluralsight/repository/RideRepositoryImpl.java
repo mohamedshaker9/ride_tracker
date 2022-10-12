@@ -1,9 +1,15 @@
 package com.pluralsight.repository;
 
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -63,6 +69,13 @@ public class RideRepositoryImpl implements RideRepository {
 		
 		namedParameterJdbcTemplate.update("DELETE FROM ride WHERE id = :id", paramMap); 
 
+	}
+
+	@Override
+	public void batchUpdate(List<Object[]> pairs) {
+		
+		jdbcTemplate.batchUpdate("UPDATE ride SET ride_date = ? WHERE id = ?", pairs);
+									
 	}
 	
 }

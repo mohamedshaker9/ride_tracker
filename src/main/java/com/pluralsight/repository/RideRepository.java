@@ -17,4 +17,6 @@ public interface RideRepository {
 
 	void deleteRide(Integer id);
 
+	void batchUpdate(List<Object[]> pairs);
+
 }

@@ -1,5 +1,8 @@
 package com.pluralsight.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +42,21 @@ public class RideServiceImpl implements RideService {
 	public void deleteRide(Integer id) {
 		rideRepository.deleteRide(id);
 	}
+
+	@Override
+	public void batchUpdate() {
+		List<Ride> rides = this.getRides();
+		List<Object[]> pairs = new ArrayList<>();
+		
+		for(Ride r: rides) {
+			Object[] pair = {LocalDateTime.now(), r.getId()};
+			pairs.add(pair);
+		}
+		
+		rideRepository.batchUpdate(pairs);
+									
+	}
+
 	
 	
 }

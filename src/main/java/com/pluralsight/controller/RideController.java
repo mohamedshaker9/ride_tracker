@@ -45,4 +45,12 @@ public class RideController {
 		 rideService.deleteRide(id);
 		 return null;
 	}
+	
+	@RequestMapping(value = "/batch", method = RequestMethod.GET)
+	public @ResponseBody Object getRide() {
+		
+		rideService.batchUpdate();
+		return null;
+	}
+	
 }
