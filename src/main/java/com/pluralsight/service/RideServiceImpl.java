@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pluralsight.model.Ride;
 import com.pluralsight.repository.RideRepository;
@@ -44,6 +46,7 @@ public class RideServiceImpl implements RideService {
 	}
 
 	@Override
+	@Transactional
 	public void batchUpdate() {
 		List<Ride> rides = this.getRides();
 		List<Object[]> pairs = new ArrayList<>();
@@ -54,6 +57,8 @@ public class RideServiceImpl implements RideService {
 		}
 		
 		rideRepository.batchUpdate(pairs);
+		
+//		throw new DataAccessException("Test transactional") {};
 									
 	}
 
